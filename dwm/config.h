@@ -1,21 +1,20 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
+static const char *fonts[] = {
+	"monospace:size=10"
+};
+static const char dmenufont[]       = "monospace:size=10";
+static const char normbordercolor[] = "#ffffff";
+static const char normbgcolor[]     = "#ffffff";
+static const char normfgcolor[]     = "#000000";
+static const char selbordercolor[]  = "#dc00ff";
+static const char selbgcolor[]      = "#0008ff";
+static const char selfgcolor[]      = "#ffffff";
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
-static const char bkg_sel[]         = "#ff00fa";
-static const char fnt_sel[]         = "#bbffa3";
-static const char fnt_clr[]         = "#1f7700";
-static const char bkg_clr[]         = "#ffccff";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { fnt_clr, bkg_clr, bkg_clr },
-	[SchemeSel]  = { fnt_sel, bkg_sel,  bkg_sel  },
-};
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -55,8 +54,12 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", bkg_clr, "-nf", fnt_clr, "-sb", bkg_sel, "-sf", fnt_sel, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
+
+/* scrot commands */
+static const char *scrotcmd[] = { "scrot", "-t", "25", NULL };
+static const char *scrotfocusedcmd[] = { "scrot", "--focused", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -93,6 +96,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+  { 0,                            XK_Print,  spawn,          {.v = scrotcmd } },
+  { ShiftMask,                    XK_Print,  spawn,          {.v = scrotfocusedcmd } },
+  { ControlMask,                  XK_Print,  spawn,          SHCMD("sleep 1s;scrot --select") },
 };
 
 /* button definitions */
