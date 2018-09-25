@@ -2,16 +2,16 @@
 
 /* appearance */
 static const char *fonts[] = {
-	"monospace:size=10"
+	"Sunflower-Highway:size=16"
 };
-static const char dmenufont[]       = "monospace:size=10";
+static const char dmenufont[]       = "Sunflower-Highway:size=16";
 static const char normbordercolor[] = "#ffffff";
 static const char normbgcolor[]     = "#ffffff";
 static const char normfgcolor[]     = "#000000";
 static const char selbordercolor[]  = "#dc00ff";
 static const char selbgcolor[]      = "#0008ff";
 static const char selfgcolor[]      = "#ffffff";
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 8;       /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -30,7 +30,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.75; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
